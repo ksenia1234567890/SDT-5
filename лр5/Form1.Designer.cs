@@ -69,9 +69,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(117, 201);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(271, 13);
+            this.label2.Size = new System.Drawing.Size(310, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Введите буквы, которые хотите поменять местами.";
+            this.label2.Text = "Введите индексы букв, которые хотите поменять местами.";
             // 
             // listBox1
             // 

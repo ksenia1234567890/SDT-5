@@ -28,6 +28,10 @@ namespace лр5
 
         public void listBox1_Click(object sender, EventArgs e)
         {
+           
+            // Листбокс: ДС - первоначально введённая строка запоминается
+            // УС - очистка
+            
             string line = (string)listBox1.Items[listBox1.SelectedIndex];
             if(line=="Удаление строки")
             {
@@ -41,40 +45,55 @@ namespace лр5
 
         public void button1_Click(object sender, EventArgs e)
         {
-            text = textBox1.Text;
-            text2 = textBox1.Text;
-            string a = textBox2.Text;
-            string b = textBox3.Text;
-            int numb = 0;
+            try
+            {
+                text = textBox1.Text;
+                text2 = textBox1.Text;
+                int a = int.Parse(textBox2.Text);
+                int b = int.Parse(textBox3.Text);
+                char[] bukvy = new char[text.Length];
+                int k = 0;
+
+            // Если в тексте нет пробелов, текстовое поле отображает сообщение
+            
+                if (textBox1.Text.Contains(' ') == false)
+                {
+                    throw new Exception("Ваш текст не содержит ни одного пробела");
+                }
+
+            
+            // Заполнить массив и счёт пробелов
+
             int count = 0;
             foreach (char i in text)
             {
-                if (i == Convert.ToChar(a))
-                {
-                    text = text.Remove(numb, 1);
-                    text = text.Insert(numb, b);
-                }
-                if (i == Convert.ToChar(b))
-                {
-                    text = text.Remove(numb, 1);
-                    text = text.Insert(numb, a);
-                }
                 if(i==' ')
                 {
                     count++;
-
                 }
-                numb++;
-                
+
+                bukvy[k] = i;
+                k++;
             }
-            if(count==0)
-            {
-                textBox1.Text = "Ваш текст не содержит ни одного пробела";
+
+                // Поменять местами индексы
+
+
+                if (bukvy[a]==' ' || bukvy[b]==' ')
+                {
+                    throw new Exception("Нельзя менять буквы с пробелами");
+                }
+            char x = bukvy[a];
+            bukvy[a] = bukvy[b];
+            bukvy[b] = x;
+               
+            textBox1.Text = string.Concat(bukvy);
+            textBox4.Text = Convert.ToString(count);
+
             }
-            else
+            catch (Exception ex)
             {
-                textBox1.Text = text;
-                textBox4.Text = Convert.ToString(count);
+                MessageBox.Show(ex.Message);
             }
             
         }
